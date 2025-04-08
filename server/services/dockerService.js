@@ -1,7 +1,6 @@
 const { exec } = require('child_process');
 const path = require('path');
 
-// Runs a Docker container using the provided code file path
 const runDockerContainer = (codeFilePath) => {
     const dockerContext = path.join(__dirname, '../../docker/node-runner');
 
