@@ -6,8 +6,13 @@ const getQuestions = async (req, res) => {
         const questions = await Question.find(); // Fetch all questions from the database
         res.json(questions); // Send them as a JSON response
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching questions', error });
+        console.error("Error fetching questions:", error.message || error);
+        res.status(500).json({
+            message: "Error fetching questions",
+            error: error.message || error
+        });
     }
+
 };
 
 // Controller to fetch a question by its ID
