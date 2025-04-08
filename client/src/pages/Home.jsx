@@ -6,7 +6,7 @@ export default function Home() {
     const [questions, setQuestions] = useState([]); // Initialize as an empty array
 
     useEffect(() => {
-        axios.get('/api/questions')
+        axios.get(`${import.meta.env.VITE_API_URL}/api/questions`)
             .then(res => {
                 // Ensure data is an array before setting state
                 setQuestions(Array.isArray(res.data) ? res.data : []);

@@ -10,7 +10,7 @@ export default function QuestionPage() {
     const [result, setResult] = useState(null);
 
     useEffect(() => {
-        axios.get(`/api/questions/${id}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/api/questions/${id}`)
             .then(res => {
                 setQuestion(res.data);
                 setUserCode(res.data.starterCode);
@@ -20,7 +20,7 @@ export default function QuestionPage() {
 
     const handleSubmit = async () => {
         try {
-            const res = await axios.post('/api/code/submit', {
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/code/submit`, {
                 questionId: id,
                 userCode
             });
