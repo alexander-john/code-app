@@ -25,7 +25,10 @@ const submitCode = async (req, res) => {
 
             const { filePath, fileName } = writeUserCodeWithTest(userCode, input, functionName);
             const rawOutput = await runDockerContainer(filePath);
-            const output = rawOutput.trim();
+
+            const lines = rawOutput.trim().split('\n');
+            const output = lines.reverse().find(line => line.trim() !== '');
+
 
             // cleanup
             try {
