@@ -6,9 +6,12 @@ const codeRoute = require('./routes/codeRoutes');
 require('dotenv').config();
 
 const app = express();
+
 app.use(cors({
-    origin: "https://code-app-client.netlify.app/"
+    origin: "https://code-app-client.netlify.app",
+    credentials: true
 }));
+
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
