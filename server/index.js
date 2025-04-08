@@ -1,4 +1,3 @@
-const path = require("path");
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -13,12 +12,6 @@ app.use(express.json());
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('Mongo error', err));
-
-app.use(express.static(path.join(__dirname, "../client/dist")));
-
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
 
 app.use('/api/questions', questionRoutes);
 app.use('/api/code', codeRoute);
