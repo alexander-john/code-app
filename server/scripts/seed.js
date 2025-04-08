@@ -1,7 +1,7 @@
 // Import required modules and the Question model
 require('dotenv').config(); // Load environment variables
 const mongoose = require('mongoose');
-const Question = require('../models/questionModel'); // Adjust path to your model if needed
+const Question = require('../models/questionModel');
 
 console.log('Mongo URI:', process.env.MONGO_URI);
 
