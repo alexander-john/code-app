@@ -1,16 +1,25 @@
+const dotenv = require('dotenv');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const questionRoutes = require('./routes/questionRoutes');
 const codeRoute = require('./routes/codeRoutes');
-require('dotenv').config();
+
+const env = process.env.NODE_ENV || 'development';
+dotenv.config({ path: `.env.${env}` });
 
 const app = express();
-app.use(cors({
-    origin: "https://code-app-client.netlify.app",
-    methods: ["GET", "POST"],
-    credentials: true,
-}));
+
+if (env === 'development') {
+    app.use(cors()); // allow all in dev
+} else {
+    app.use(cors({
+        origin: "https://code-app-client.netlify.app",
+        methods: ["GET", "POST"],
+        credentials: true,
+    }));
+}
+
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)

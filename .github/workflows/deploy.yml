@@ -26,5 +26,5 @@ jobs:
             cd /root/code-app/server
             git pull origin main
             npm install --omit=dev
-            pm2 restart backend
+            NODE_ENV=production pm2 restart backend
           EOF
