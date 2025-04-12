@@ -26,5 +26,6 @@ jobs:
             cd /root/code-app/server
             git pull origin main
             npm install --omit=dev
-            NODE_ENV=production pm2 restart backend
+            NODE_ENV=production pm2 delete backend || true
+            NODE_ENV=production pm2 start index.js --name backend
           EOF
