@@ -1,11 +1,8 @@
-// src/components/CodeEditor.jsx
-
 import React, { useEffect, useRef } from 'react';
 import { EditorState } from '@codemirror/state';
 import { EditorView, keymap, lineNumbers, highlightActiveLine } from '@codemirror/view';
-import { history, historyKeymap } from '@codemirror/commands';
+import { defaultKeymap, history, historyKeymap } from '@codemirror/commands';
 import { javascript } from '@codemirror/lang-javascript';
-// You can add a theme like oneDark if you want, but no defaultHighlightStyle
 
 export default function CodeEditor({ code = '', onChange }) {
     const editorRef = useRef();
@@ -20,7 +17,7 @@ export default function CodeEditor({ code = '', onChange }) {
                 lineNumbers(),
                 highlightActiveLine(),
                 history(),
-                keymap.of(historyKeymap),
+                keymap.of([...defaultKeymap, ...historyKeymap]),
                 javascript(),
                 EditorView.updateListener.of((update) => {
                     if (update.docChanged) {
@@ -31,15 +28,24 @@ export default function CodeEditor({ code = '', onChange }) {
             ],
         });
 
-        const view = new EditorView({
+        editorViewRef.current = new EditorView({
             state,
             parent: editorRef.current,
         });
 
-        editorViewRef.current = view;
+        return () => editorViewRef.current.destroy();
+    }, []);
 
-        return () => view.destroy();
-    }, []); // <-- no [code] here
+    useEffect(() => {
+        const view = editorViewRef.current;
+        if (!view) return;
+        const current = view.state.doc.toString();
+        if (code !== current) {
+            view.dispatch({
+                changes: { from: 0, to: current.length, insert: code },
+            });
+        }
+    }, [code]);
 
     return (
         <div
