@@ -20,24 +20,23 @@ const corsOptions = env === 'development' ? {} : {
     origin: 'https://code-app-client.netlify.app', methods: ['GET', 'POST'], credentials: true,
 };
 
-// Configure CORS: allow all in development, restrict in production
-if (env === 'development') {
-    app.use(cors()); // Allow requests from any origin in development
-} else {
-    app.use(cors({
-        origin: "https://code-app-client.netlify.app", // Frontend domain in production
-        methods: ["GET", "POST"], // Allowed HTTP methods
-        credentials: true, // Enable credentials (cookies, etc.)
-    }));
-}
+// Configure CORS policy dynamically based on environment
+// Allows unrestricted access in development; restricts to frontend origin in production
+app.use(cors(corsOptions));
 
 // Parse incoming JSON requests
 app.use(express.json());
 
 // Connect to MongoDB using Mongoose
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('Mongo error', err));
+(async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI);
+        console.log('MongoDB connected');
+    } catch (err) {
+        console.error('MongoDB connection error:', err.message);
+        process.exit(1);
+    }
+})();
 
 // Use question and code API routes
 app.use('/api/questions', questionRoutes); // Handles question-related routes
