@@ -21,9 +21,7 @@ const app = express();
 // - In development: Allow unrestricted access
 // - In production: Restrict access to the frontend origin
 const corsOptions = env === 'development' ? {} : {
-    origin: 'https://code-app-client.netlify.app',
-    methods: ['GET', 'POST'],
-    credentials: true,
+    origin: 'https://code-app-client.netlify.app', methods: ['GET', 'POST'], credentials: true,
 };
 app.use(cors(corsOptions));
 
