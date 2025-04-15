@@ -20,9 +20,7 @@ const app = express();
 // Define CORS options as constants
 const CORS_OPTIONS_DEVELOPMENT = {}; // Allow unrestricted access in development
 const CORS_OPTIONS_PRODUCTION = {
-    origin: 'https://code-app-client.netlify.app',
-    methods: ['GET', 'POST'],
-    credentials: true,
+    origin: 'https://code-app-client.netlify.app', methods: ['GET', 'POST'], credentials: true,
 };
 
 // Select the appropriate CORS options based on the environment
