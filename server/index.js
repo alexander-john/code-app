@@ -1,5 +1,6 @@
-// Load environment variables from the appropriate .env file based on NODE_ENV (default: .env.development)
-const dotenv = require('dotenv');
+// Load environment configuration (ensures dotenv is loaded)
+require('./config/env');
+
 const express = require('express');
 const cors = require('cors');
 
@@ -10,23 +11,14 @@ const codeRoute = require('./routes/codeRoutes'); // Routes for code submission 
 // Import database connection utility
 const connectDB = require('./config/db');
 
-// Determine the environment (default: development) and load corresponding .env file
-const env = process.env.NODE_ENV || 'development';
-dotenv.config({ path: `.env.${env}` });
+// Import CORS configuration
+const getCorsOptions = require('./config/corsConfig');
 
 // Initialize the Express app
 const app = express();
 
-// Define CORS options as constants
-const CORS_OPTIONS_DEVELOPMENT = {}; // Allow unrestricted access in development
-const CORS_OPTIONS_PRODUCTION = {
-    origin: 'https://code-app-client.netlify.app', methods: ['GET', 'POST'], credentials: true,
-};
-
-// Select the appropriate CORS options based on the environment
-const corsOptions = env === 'development' ? CORS_OPTIONS_DEVELOPMENT : CORS_OPTIONS_PRODUCTION;
-
 // Configure CORS policy
+const corsOptions = getCorsOptions(process.env.NODE_ENV);
 app.use(cors(corsOptions));
 
 // Middleware to parse incoming JSON requests
