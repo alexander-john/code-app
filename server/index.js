@@ -17,16 +17,12 @@ dotenv.config({ path: `.env.${env}` });
 // Initialize the Express app
 const app = express();
 
-// Define CORS options as constants
-const CORS_OPTIONS_DEVELOPMENT = {}; // Allow unrestricted access in development
-const CORS_OPTIONS_PRODUCTION = {
+// Configure CORS policy
+// - In development: Allow unrestricted access
+// - In production: Restrict access to the frontend origin
+const corsOptions = env === 'development' ? {} : {
     origin: 'https://code-app-client.netlify.app', methods: ['GET', 'POST'], credentials: true,
 };
-
-// Select the appropriate CORS options based on the environment
-const corsOptions = env === 'development' ? CORS_OPTIONS_DEVELOPMENT : CORS_OPTIONS_PRODUCTION;
-
-// Configure CORS policy
 app.use(cors(corsOptions));
 
 // Middleware to parse incoming JSON requests
