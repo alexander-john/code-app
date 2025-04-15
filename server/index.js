@@ -1,49 +1,50 @@
-// Load environment variables from .env files based on NODE_ENV (default to .env.development)
+// Load environment variables from the appropriate .env file based on NODE_ENV (default: .env.development)
 const dotenv = require('dotenv');
 const express = require('express');
 const cors = require('cors');
 
 // Import custom route handlers
-const questionRoutes = require('./routes/questionRoutes');
-const codeRoute = require('./routes/codeRoutes');
+const questionRoutes = require('./routes/questionRoutes'); // Routes for managing questions
+const codeRoute = require('./routes/codeRoutes'); // Routes for code submission and evaluation
 
-// Import configuration utilities
+// Import database connection utility
 const connectDB = require('./config/db');
 
-// Determine the environment and load corresponding .env file
+// Determine the environment (default: development) and load corresponding .env file
 const env = process.env.NODE_ENV || 'development';
-dotenv.config({path: `.env.${env}`});
+dotenv.config({ path: `.env.${env}` });
 
-// Initialize Express app
+// Initialize the Express app
 const app = express();
 
-// Setup CORS based on environment
+// Configure CORS policy
+// - In development: Allow unrestricted access
+// - In production: Restrict access to the frontend origin
 const corsOptions = env === 'development' ? {} : {
-    origin: 'https://code-app-client.netlify.app', methods: ['GET', 'POST'], credentials: true,
+    origin: 'https://code-app-client.netlify.app',
+    methods: ['GET', 'POST'],
+    credentials: true,
 };
-
-// Configure CORS policy dynamically based on environment
-// Allows unrestricted access in development; restricts to frontend origin in production
 app.use(cors(corsOptions));
 
-// Parse incoming JSON requests
+// Middleware to parse incoming JSON requests
 app.use(express.json());
 
-// Connect to MongoDB
+// Connect to MongoDB and start the server
 connectDB()
     .then(() => {
-        // Use question and code API routes
-        app.use('/api/questions', questionRoutes); // Handles question-related routes
-        app.use('/api/code', codeRoute); // Handles code submission and evaluation
+        // Register API routes
+        app.use('/api/questions', questionRoutes); // Endpoints for question-related operations
+        app.use('/api/code', codeRoute); // Endpoints for code execution and evaluation
 
-        // Start the Express server on the specified port
+        // Start the server on the specified port (default: 5000)
         const PORT = process.env.PORT || 5000;
         app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
     })
     .catch((err) => {
+        // Handle database connection errors
         console.error('MongoDB connection error:', err.message);
-        process.exit(1);
+        process.exit(1); // Exit the process with a failure code
     });
 
 
