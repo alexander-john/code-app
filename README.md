@@ -6,8 +6,7 @@ Code App is a full stack application for executing user-submitted code securely 
 
 ## 🌐 Live URLs
 
-- **Frontend (React)**: [https://code-app-frontend.netlify.app](https://code-app-frontend.netlify.app)  
-- **Backend API (Express)**: [https://api.codeapp.example.com](https://api.codeapp.example.com)
+- **Frontend (React)**: [https://code-app-frontend.netlify.app](https://code-app-frontend.netlify.app)
 
 ---
 
