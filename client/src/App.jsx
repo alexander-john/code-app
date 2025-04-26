@@ -1,14 +1,34 @@
+// React is used to build the component-based UI.
 import React from 'react';
+
+// React Router is used for client-side routing to create a single-page application (SPA).
+// - `BrowserRouter` provides the routing context for the app.
+// - `Routes` is used to define multiple routes.
+// - `Route` maps a specific path to a component.
+// - Dynamic route parameters (e.g., `:id` and `:name`) allow for flexible and dynamic URLs.
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import Question from './pages/QuestionPage.jsx';
+
+// Importing page components for different routes.
+import Home from './pages/Home'; // The main homepage.
+import Question from './pages/QuestionPage.jsx'; // Displays a specific question based on the `:id` parameter.
+import NewHome from './pages/NewHome.jsx'; // A redesigned version of the homepage.
+import TopicViewer from './components/TopicViewer.jsx'; // Dynamically displays content based on the `:name` parameter.
 
 function App() {
     return (
         <Router>
             <Routes>
+                {/* Static route for the homepage */}
                 <Route path="/" element={<Home />} />
+
+                {/* Static route for the new homepage */}
+                <Route path="/new-home" element={<NewHome />} />
+
+                {/* Dynamic route with a parameter `:id` to display a specific question */}
                 <Route path="/questions/:id" element={<Question />} />
+
+                {/* Dynamic route with a parameter `:name` to display content based on the topic name */}
+                <Route path="/:name" element={<TopicViewer />} />
             </Routes>
         </Router>
     );
