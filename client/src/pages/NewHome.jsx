@@ -21,8 +21,8 @@ export default function NewHome() {
             <h1>New Home</h1>
             <ul>
                 {topics.map((topic) => (
-                    <li key={topic.name}>
-                        <Link to={`/${topic.name}`}>{topic.title}</Link>
+                    <li key={topic.slug}>
+                        <Link to={`/${topic.slug}`}>{topic.title}</Link>
                         <p>{topic.description}</p>
                     </li>
                 ))}
