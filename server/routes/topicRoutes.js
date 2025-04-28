@@ -1,15 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const Topic = require('../models/topic'); // Mongoose model for the "topics" collection
+const Topic = require('../models/Topic');
+const Subtopic = require('../models/Subtopic');
 
-// Route to fetch all topics
+// GET /topics — get all topics
 router.get('/', async (req, res) => {
-    try {
-        const topics = await Topic.find(); // Fetch all topics from the database
-        res.status(200).json(topics);
-    } catch (err) {
-        res.status(500).json({ error: 'Failed to fetch topics', details: err.message });
-    }
+  const topics = await Topic.find().lean();
+  res.json(topics);
+});
+
+// GET /topics/:topicId/subtopics — get subtopics for a topic
+router.get('/:topicId/subtopics', async (req, res) => {
+  const subtopics = await Subtopic.find({ parentTopicId: req.params.topicId }).lean();
+  res.json(subtopics);
 });
 
 module.exports = router;
