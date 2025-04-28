@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Topic = require('../models/Topic'); // Mongoose model for the "topics" collection
+const Topic = require('../models/topic'); // Mongoose model for the "topics" collection
 
 // Route to fetch all topics
 router.get('/', async (req, res) => {
