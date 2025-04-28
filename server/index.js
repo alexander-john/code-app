@@ -7,7 +7,7 @@ const cors = require('cors');
 // Import custom route handlers
 const questionRoutes = require('./routes/questionRoutes'); // Routes for managing questions
 const codeRoute = require('./routes/codeRoutes'); // Routes for code submission and evaluation
-const topicRoutes = require('./routes/topicRoutes');
+const topicRoutes = require('./routes/topicRoutes'); // Routes for managing topics
 
 // Import database connection utility
 const connectDB = require('./config/db');
@@ -25,7 +25,8 @@ app.use(cors(corsOptions));
 // Middleware to parse incoming JSON requests
 app.use(express.json());
 
-app.use('/api/topics', topicRoutes);
+// Register topic-related API routes
+app.use('/api/topics', topicRoutes); // Endpoints for topic-related operations
 
 // Connect to MongoDB and start the server
 connectDB()
