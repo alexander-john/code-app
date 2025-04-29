@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 
 const featureSchema = new mongoose.Schema({
-  title: String,
-  parentSubtopicId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Subtopic'
-  }
+    title: String,
+    slug: { type: String, unique: true }, // NEW
+    parentSubtopicSlug: String
 });
+
 
 module.exports = mongoose.model('Feature', featureSchema);
