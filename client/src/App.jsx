@@ -8,12 +8,7 @@ import React from 'react';
 // - Dynamic route parameters (e.g., `:id` and `:name`) allow for flexible and dynamic URLs.
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-// Importing page components for different routes.
-import HomePage from './pages/HomePage'; // The main homepage.
-/* import Question from './pages/QuestionPage.jsx'; // Displays a specific question based on the `:id` parameter.
-import NewHome from './pages/NewHome.jsx'; // A redesigned version of the homepage.
-import TopicViewer from './components/TopicViewer.jsx'; // Dynamically displays content based on the `:name` parameter.
- */
+import HomePage from './pages/HomePage';
 import SubtopicsPage from './pages/SubTopicsPage';
 import FeaturesPage from './pages/FeaturesPage';
 
