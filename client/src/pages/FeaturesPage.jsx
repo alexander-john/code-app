@@ -3,22 +3,22 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function FeaturesPage() {
-  const { subtopicId } = useParams();
+  const { subtopicSlug } = useParams();
   const [features, setFeatures] = useState([]);
 
   useEffect(() => {
     async function fetchFeatures() {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/subtopics/${subtopicId}/features`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/subtopics/${subtopicSlug}/features`);
       setFeatures(res.data);
     }
     fetchFeatures();
-  }, [subtopicId]);
+  }, [subtopicSlug]);
 
   return (
     <div>
       <h1>Features</h1>
       {features.map((feature) => (
-        <div key={feature._id}>{feature.title}</div>
+        <div key={feature.slug}>{feature.title}</div>
       ))}
     </div>
   );

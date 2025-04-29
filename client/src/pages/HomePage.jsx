@@ -17,8 +17,8 @@ function HomePage() {
     <div>
       <h1>Topics</h1>
       {topics.map((topic) => (
-        <div key={topic._id}>
-          <Link to={`/topics/${topic._id}`}>{topic.title}</Link>
+        <div key={topic.slug}>
+          <Link to={`/topics/${topic.slug}`}>{topic.title}</Link>
         </div>
       ))}
     </div>

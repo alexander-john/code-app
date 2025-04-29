@@ -23,8 +23,8 @@ function App() {
             <Routes>
                 {/* Static route for the homepage */}
                 <Route path="/" element={<HomePage />} />
-                <Route path="/topics/:topicId" element={<SubtopicsPage />} />
-                <Route path="/topics/:topicId/:subtopicId" element={<FeaturesPage />} />
+                <Route path="/topics/:topicSlug" element={<SubtopicsPage />} />
+                <Route path="/topics/:topicSlug/:subtopicSlug" element={<FeaturesPage />} />
 
                 {/* Static route for the new homepage */}
                 {/* <Route path="/new-home" element={<NewHome />} /> */}

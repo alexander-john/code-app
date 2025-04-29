@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET /topics/:topicId/subtopics — get subtopics for a topic
-router.get('/:topicId/subtopics', async (req, res) => {
+router.get('/:topicSlug/subtopics', async (req, res) => {
   const subtopics = await Subtopic.find({ parentTopicSlug: req.params.topicSlug }).lean();
   res.json(subtopics);
 });
