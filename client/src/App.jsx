@@ -21,19 +21,9 @@ function App() {
     return (
         <Router>
             <Routes>
-                {/* Static route for the homepage */}
                 <Route path="/" element={<HomePage />} />
                 <Route path="/topics/:topicSlug" element={<SubtopicsPage />} />
                 <Route path="/topics/:topicSlug/:subtopicSlug" element={<FeaturesPage />} />
-
-                {/* Static route for the new homepage */}
-                {/* <Route path="/new-home" element={<NewHome />} /> */}
-
-                {/* Dynamic route with a parameter `:id` to display a specific question */}
-                {/* <Route path="/questions/:id" element={<Question />} /> */}
-
-                {/* Dynamic route with a parameter `:name` to display content based on the topic name */}
-                {/* <Route path="/:name" element={<TopicViewer />} /> */}
             </Routes>
         </Router>
     );
