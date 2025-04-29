@@ -14,7 +14,6 @@ import HomePage from './pages/HomePage'; // The main homepage.
 import NewHome from './pages/NewHome.jsx'; // A redesigned version of the homepage.
 import TopicViewer from './components/TopicViewer.jsx'; // Dynamically displays content based on the `:name` parameter.
  */
-import HomePage from './pages/HomePage';
 import SubtopicsPage from './pages/SubTopicsPage';
 import FeaturesPage from './pages/FeaturesPage';
 
