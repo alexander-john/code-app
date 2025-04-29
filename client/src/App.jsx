@@ -9,26 +9,32 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // Importing page components for different routes.
-import Home from './pages/Home'; // The main homepage.
-import Question from './pages/QuestionPage.jsx'; // Displays a specific question based on the `:id` parameter.
+import HomePage from './pages/HomePage'; // The main homepage.
+/* import Question from './pages/QuestionPage.jsx'; // Displays a specific question based on the `:id` parameter.
 import NewHome from './pages/NewHome.jsx'; // A redesigned version of the homepage.
 import TopicViewer from './components/TopicViewer.jsx'; // Dynamically displays content based on the `:name` parameter.
+ */
+import HomePage from './pages/HomePage';
+import SubtopicsPage from './pages/SubTopicsPage';
+import FeaturesPage from './pages/FeaturesPage';
 
 function App() {
     return (
         <Router>
             <Routes>
                 {/* Static route for the homepage */}
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/topics/:topicId" element={<SubtopicsPage />} />
+                <Route path="/topics/:topicId/:subtopicId" element={<FeaturesPage />} />
 
                 {/* Static route for the new homepage */}
-                <Route path="/new-home" element={<NewHome />} />
+                {/* <Route path="/new-home" element={<NewHome />} /> */}
 
                 {/* Dynamic route with a parameter `:id` to display a specific question */}
-                <Route path="/questions/:id" element={<Question />} />
+                {/* <Route path="/questions/:id" element={<Question />} /> */}
 
                 {/* Dynamic route with a parameter `:name` to display content based on the topic name */}
-                <Route path="/:name" element={<TopicViewer />} />
+                {/* <Route path="/:name" element={<TopicViewer />} /> */}
             </Routes>
         </Router>
     );
