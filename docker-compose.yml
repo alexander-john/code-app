@@ -18,7 +18,7 @@ services:
     
     # Loads environment variables from .env into the container.
     env_file:
-      - .env
+      - ./server/.env.production
 
     # Tells Docker to start the mongo service before this one.
     depends_on:
