@@ -1,9 +1,15 @@
 # Build phase
 FROM node:18 AS build
 WORKDIR /app
+
 COPY package*.json ./
 RUN npm install
+
 COPY . .
+
+# ✅ Fix native binary mismatch
+RUN npm rebuild esbuild
+
 RUN npm run build
 
 # Serve with Nginx
