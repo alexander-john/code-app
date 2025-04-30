@@ -41,10 +41,6 @@ services:
       - ./client:/app
       - /app/node_modules  # Ignore local node_modules
 
-    # Loads environment variables into the frontend.
-    env_file:
-      - .env
-
     # Ensures the frontend starts after the backend is ready.
     depends_on:
       - server
