@@ -34,13 +34,6 @@ services:
     ports:
       - "80:80"
 
-    # Mounts ./client locally into the container at /app.
-    # Second line ensures container’s node_modules
-    # directory isn’t overridden by your empty host node_modules.
-    volumes:
-      - ./client:/app
-      - /app/node_modules  # Ignore local node_modules
-
     # Ensures the frontend starts after the backend is ready.
     depends_on:
       - server
