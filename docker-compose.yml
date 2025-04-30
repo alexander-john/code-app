@@ -32,7 +32,7 @@ services:
 
     # Maps host port 5173 to container port 5173.
     ports:
-      - "5173:5173"
+      - "80:80"
 
     # Mounts ./client locally into the container at /app.
     # Second line ensures container’s node_modules
