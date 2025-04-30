@@ -6,6 +6,7 @@ const Subtopic = require('../models/Subtopic');
 // GET /topics — get all topics
 router.get('/', async (req, res) => {
   const topics = await Topic.find().lean();
+  console.log("Fetched topics:", topics);
   res.json(topics);
 });
 
