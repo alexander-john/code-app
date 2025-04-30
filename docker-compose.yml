@@ -1,0 +1,70 @@
+# Defines multiple services (containers) that work together.
+# In this case we have server, frontend, and mongo
+services:
+  # This names the service “server”
+  server:
+    # Builds a Docker image from the ./server directory.
+    # This folder must have a Dockerfile that tells Docker how to build the app.
+    build: ./server
+
+    # Maps port 5000 on your machine to port 5000 in the container.
+    # So when you hit localhost:5000, it reaches your backend inside Docker.
+    ports:
+      - "5000:5000"
+
+    # Mounts your local ./server folder to /app inside the container.
+    volumes:
+      - ./server:/app
+    
+    # Loads environment variables from .env into the container.
+    env_file:
+      - .env
+
+    # Tells Docker to start the mongo service before this one.
+    depends_on:
+      - mongo
+
+  # This names the service “frontend”
+  frontend:
+
+    # Builds the frontend from the ./client directory using its Dockerfile.
+    build: ./client
+
+    # Maps host port 5173 to container port 5173.
+    ports:
+      - "5173:5173"
+
+    # Mounts ./client locally into the container at /app.
+    # Second line ensures container’s node_modules
+    # directory isn’t overridden by your empty host node_modules.
+    volumes:
+      - ./client:/app
+      - /app/node_modules  # Ignore local node_modules
+
+    # Loads environment variables into the frontend.
+    env_file:
+      - .env
+
+    # Ensures the frontend starts after the backend is ready.
+    depends_on:
+      - server
+
+  # Names the service “mongo” — this runs a MongoDB database.
+  mongo:
+    # Uses the official MongoDB image version 6.
+    # No need to write a Dockerfile — Docker Hub provides this pre-built.
+    image: mongo:6
+
+    # Exposes port 27017, the default MongoDB port.
+    # Lets you connect to the database.
+    ports:
+      - "27017:27017"
+
+    # Uses a named volume to persist data.
+    # /data/db is where MongoDB stores its actual database files.
+    volumes:
+      - mongo-data:/data/db
+
+# Declares a Docker-managed volume called mongo-data.
+volumes:
+  mongo-data:
