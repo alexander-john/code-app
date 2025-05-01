@@ -1,59 +1,79 @@
-# Defines multiple services (containers) that work together.
-# In this case we have server, frontend, and mongo
+# Docker Compose file to define and manage the application's services.
+# This setup includes three services: server (backend), frontend (React app), and mongo (MongoDB database).
+# Each service is isolated in its own container but can communicate with others via the Docker network.
+
 services:
-  # This names the service “server”
+  # This names the service “server” (backend API).
   server:
-    # Builds a Docker image from the ./server directory.
-    # This folder must have a Dockerfile that tells Docker how to build the app.
+    # Build the Docker image for the backend from the ./server directory.
+    # HOW: Docker looks for a Dockerfile in the ./server directory to build the image.
+    # WHY: This allows you to define how the backend is built and configured.
     build: ./server
 
-    # Maps port 5000 on your machine to port 5000 in the container.
-    # So when you hit localhost:5000, it reaches your backend inside Docker.
+    # Expose port 5000 on the host machine and map it to port 5000 in the container.
+    # HOW: Requests to localhost:5000 on your machine are forwarded to port 5000 in the container.
+    # WHY: This makes the backend accessible from your local machine for development or testing.
     ports:
       - "5000:5000"
 
-    # Mounts your local ./server folder to /app inside the container.
+    # Mount the local ./server directory to /app inside the container.
+    # HOW: Changes made to the ./server folder on your machine are reflected in the container in real-time.
+    # WHY: This allows for live development without rebuilding the container for every change.
     volumes:
       - ./server:/app
-    
-    # Loads environment variables from .env into the container.
+
+    # Load environment variables from the .env.production file into the container.
+    # HOW: Docker reads the .env.production file and injects the variables into the container's environment.
+    # WHY: This keeps sensitive information (e.g., database credentials) out of the codebase and allows for different configurations in production and development.
     env_file:
       - ./server/.env.production
 
-    # Tells Docker to start the mongo service before this one.
+    # Ensure the MongoDB service is started before the backend service.
+    # HOW: Docker waits for the mongo container to start before starting the server container.
+    # WHY: The backend depends on the database being available, so this ensures proper startup order.
     depends_on:
       - mongo
 
-  # This names the service “frontend”
+  # This names the service “frontend” (React/Vite app).
   frontend:
-
-    # Builds the frontend from the ./client directory using its Dockerfile.
+    # Build the Docker image for the frontend from the ./client directory.
+    # HOW: Docker looks for a Dockerfile in the ./client directory to build the image.
+    # WHY: This allows you to define how the frontend is built and configured.
     build: ./client
 
-    # Maps host port 5173 to container port 5173.
+    # Expose port 80 on the host machine and map it to port 80 in the container.
+    # HOW: Requests to localhost:80 on your machine are forwarded to port 80 in the container.
+    # WHY: This makes the frontend accessible via a browser at http://localhost.
     ports:
       - "80:80"
 
-    # Ensures the frontend starts after the backend is ready.
+    # Ensure the backend service is started before the frontend service.
+    # HOW: Docker waits for the server container to start before starting the frontend container.
+    # WHY: The frontend may depend on the backend API being available, so this ensures proper startup order.
     depends_on:
       - server
 
   # Names the service “mongo” — this runs a MongoDB database.
   mongo:
-    # Uses the official MongoDB image version 6.
-    # No need to write a Dockerfile — Docker Hub provides this pre-built.
+    # Use the official MongoDB image version 6.
+    # HOW: Docker pulls the pre-built MongoDB image from Docker Hub.
+    # WHY: This saves time and ensures you are using a stable, tested version of MongoDB.
     image: mongo:6
 
-    # Exposes port 27017, the default MongoDB port.
-    # Lets you connect to the database.
+    # Expose port 27017 on the host machine and map it to port 27017 in the container.
+    # HOW: Requests to localhost:27017 on your machine are forwarded to port 27017 in the container.
+    # WHY: This allows you to connect to the database from your local machine or other containers.
     ports:
       - "27017:27017"
 
-    # Uses a named volume to persist data.
-    # /data/db is where MongoDB stores its actual database files.
+    # Use a named volume to persist MongoDB data.
+    # HOW: The volume stores MongoDB's data files outside the container.
+    # WHY: This ensures that database data is not lost when the container is stopped or removed.
     volumes:
       - mongo-data:/data/db
 
-# Declares a Docker-managed volume called mongo-data.
+# Declare a Docker-managed volume for MongoDB data persistence.
+# HOW: Docker creates a named volume to store persistent data.
+# WHY: This ensures that MongoDB's data persists across container restarts or rebuilds.
 volumes:
   mongo-data:
