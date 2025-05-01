@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Topic = require('../models/TemptTopic');
+const Topic = require('../models/Topic');
 const Subtopic = require('../models/Subtopic');
 
 // GET /topics — get all topics
