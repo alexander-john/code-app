@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Feature = require('../models/Feature');
+const Feature = require('../models/feature');
 
 // GET /subtopics/:subtopicId/features — get features for a subtopic
 router.get('/:subtopicSlug/features', async (req, res) => {

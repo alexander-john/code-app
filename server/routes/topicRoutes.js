@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Topic = require('../models/Topic');
-const Subtopic = require('../models/Subtopic');
+const Topic = require('../models/topic');
+const Subtopic = require('../models/subtopic');
 
 // GET /topics — get all topics
 router.get('/', async (req, res) => {
