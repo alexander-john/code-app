@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 function FeaturesPage() {
-  const { subtopicSlug } = useParams();
+  const { topicSlug, subtopicSlug } = useParams();
   const [features, setFeatures] = useState([]);
 
   useEffect(() => {
@@ -18,7 +18,9 @@ function FeaturesPage() {
     <div>
       <h1>Features</h1>
       {features.map((feature) => (
-        <div key={feature.slug}>{feature.title}</div>
+        <div key={feature.slug}>
+          <Link to={`/topics/${topicSlug}/${subtopicSlug}/${feature.slug}`}>{feature.title}</Link>
+        </div>
       ))}
     </div>
   );
