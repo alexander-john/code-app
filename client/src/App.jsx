@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import SubtopicsPage from './pages/SubtopicsPage';
 import FeaturesPage from './pages/FeaturesPage';
+import ComingSoonPage from './pages/ComingSoonPage';
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/topics/:topicSlug" element={<SubtopicsPage />} />
                 <Route path="/topics/:topicSlug/:subtopicSlug" element={<FeaturesPage />} />
+                <Route path="/topics/:topicSlug/:subtopicSlug/:featureSlug" element={<ComingSoonPage />} />
             </Routes>
         </Router>
     );
