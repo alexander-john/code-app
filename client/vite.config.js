@@ -17,9 +17,9 @@ import path from 'path'
 // HOW: The `import` statement loads the built-in `path` module, which is used to resolve paths for aliases.
 
 export default defineConfig({
-// WHAT: Exports the Vite configuration object.
-// WHY: This configuration object is used by Vite to set up the build and development environment.
-// HOW: The `export default` statement exports the configuration object so Vite can use it during the build and development process.
+  // WHAT: Exports the Vite configuration object.
+  // WHY: This configuration object is used by Vite to set up the build and development environment.
+  // HOW: The `export default` statement exports the configuration object so Vite can use it during the build and development process.
 
   plugins: [react()],
   // WHAT: Specifies the plugins to be used by Vite.
@@ -53,5 +53,11 @@ export default defineConfig({
     // WHAT: Configures a proxy for API requests.
     // WHY: This forwards API requests from the frontend (`/api`) to the backend server running on `http://backend:5000`.
     // HOW: The `proxy` object maps the `/api` path to the backend server URL, enabling seamless communication between the frontend and backend during development.
+  },
+
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.js'
   }
 })
