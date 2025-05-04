@@ -22,11 +22,11 @@ services:
     volumes:
       - ./server:/app
 
-    # Load environment variables from the .env.production file into the container.
-    # HOW: Docker reads the .env.production file and injects the variables into the container's environment.
+    # Load environment variables from the .env file into the container.
+    # HOW: Docker reads the .env file and injects the variables into the container's environment.
     # WHY: This keeps sensitive information (e.g., database credentials) out of the codebase and allows for different configurations in production and development.
     env_file:
-      - ./server/.env.production
+      - ./server/.env
 
     # Ensure the MongoDB service is started before the backend service.
     # HOW: Docker waits for the mongo container to start before starting the server container.
