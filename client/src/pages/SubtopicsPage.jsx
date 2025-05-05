@@ -19,7 +19,7 @@ function SubtopicsPage() {
       <h1>Subtopics</h1>
       {subtopics.map((subtopic) => (
         <div key={subtopic.slug}>
-          <Link to={`/topics/${topicSlug}/${subtopic.slug}`}>{subtopic.title}</Link>
+          <Link to={`/${topicSlug}/${subtopic.slug}`}>{subtopic.title}</Link>
         </div>
       ))}
     </div>

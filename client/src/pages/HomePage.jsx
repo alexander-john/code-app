@@ -45,7 +45,7 @@ function HomePage() {
       <h1>Topics</h1>
       {topics.map((topic) => (
         <div key={topic.slug}>
-          <Link to={`/topics/${topic.slug}`}>{topic.title}</Link>
+          <Link to={`/${topic.slug}`}>{topic.title}</Link>
           {/* WHAT: Creates a clickable link for each topic.
               WHY: Allows users to navigate to the page for a specific topic.
               HOW: The `Link` component generates a client-side navigation link using the topic's `slug`. */}

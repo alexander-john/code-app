@@ -18,9 +18,9 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/topics/:topicSlug" element={<SubtopicsPage />} />
-                <Route path="/topics/:topicSlug/:subtopicSlug" element={<FeaturesPage />} />
-                <Route path="/topics/:topicSlug/:subtopicSlug/:featureSlug" element={<ComingSoonPage />} />
+                <Route path="/:topicSlug" element={<SubtopicsPage />} />
+                <Route path="/:topicSlug/:subtopicSlug" element={<FeaturesPage />} />
+                <Route path="/:topicSlug/:subtopicSlug/:featureSlug" element={<ComingSoonPage />} />
             </Routes>
         </Router>
     );

@@ -19,7 +19,7 @@ function FeaturesPage() {
       <h1>Features</h1>
       {features.map((feature) => (
         <div key={feature.slug}>
-          <Link to={`/topics/${topicSlug}/${subtopicSlug}/${feature.slug}`}>{feature.title}</Link>
+          <Link to={`/${topicSlug}/${subtopicSlug}/${feature.slug}`}>{feature.title}</Link>
         </div>
       ))}
     </div>
