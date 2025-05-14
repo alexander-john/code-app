@@ -49,7 +49,41 @@ VITE_API_URL=http://localhost:5000
 docker compose up --build
 ```
 
+### 4. Running the Development Environment
+
+Once the setup is complete, follow these steps to run the app in development mode:
+
+#### Using Docker (Recommended)
+1. Start the app with Docker Compose:
+   ```bash
+   docker compose up --build
+   ```
+2. Access the frontend in your browser at [http://localhost](http://localhost).  
+   - **Why port 80?**: The `docker-compose.yml` file maps port `80` on your host machine to port `80` inside the container where the frontend is running. This makes the app accessible at the default HTTP port (`80`), so you don't need to specify a port in the URL.
+
+#### Without Docker (Manual Setup)
+1. Start the backend server:
+   ```bash
+   cd server
+   npm install
+   npm run dev
+   ```
+   The backend will run on [http://localhost:5000](http://localhost:5000).
+
+2. Start the frontend:
+   ```bash
+   cd client
+   npm install
+   npm run dev
+   ```
+   The frontend will run on [http://localhost:5173](http://localhost:5173) (default Vite port).  
+   - **Why port 5173?**: When running the frontend manually, Vite's development server defaults to port `5173` unless otherwise configured.
+
+3. Ensure the `.env.development` files are properly configured for both the server and client.
+
 ---
+
+Now you can develop and test the app locally!
 
 ## 🌐 Production Deployment
 
