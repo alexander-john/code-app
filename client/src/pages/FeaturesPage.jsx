@@ -1,29 +1,26 @@
-import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
+import { technologies } from '../data/technologies';
 
 function FeaturesPage() {
-  const { topicSlug, subtopicSlug } = useParams();
-  const [features, setFeatures] = useState([]);
+    const { languageSlug, bookSlug } = useParams();
+    const language = technologies[languageSlug];
+    const book = language?.books?.[bookSlug];
 
-  useEffect(() => {
-    async function fetchFeatures() {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/subtopics/${subtopicSlug}/features`);
-      setFeatures(res.data);
-    }
-    fetchFeatures();
-  }, [subtopicSlug]);
+    if (!language) return <div>Language not found.</div>;
+    if (!book) return <div>Book not found.</div>;
 
-  return (
-    <div>
-      <h1>Features</h1>
-      {features.map((feature) => (
-        <div key={feature.slug}>
-          <Link to={`/${topicSlug}/${subtopicSlug}/${feature.slug}`}>{feature.title}</Link>
+    return (
+        <div>
+            <h1>Features for {book.title}</h1>
+            {Object.entries(book.features).map(([featureSlug, feature]) => (
+                <div key={featureSlug}>
+                    <Link to={`/features/${languageSlug}/${bookSlug}/${featureSlug}`}>
+                        {feature.title}
+                    </Link>
+                </div>
+            ))}
         </div>
-      ))}
-    </div>
-  );
+    );
 }
 
 export default FeaturesPage;
