@@ -12,24 +12,15 @@ function BooksPage() {
     return (
         <div>
             <h1>{language.title} Books</h1>
-            {Object.entries(language.books).map(([bookSlug, book]) => (
-                <div key={bookSlug}>
-                    <h2>{book.title}</h2>
-                    {book.chapters ? (
-                        <ul>
-                            {Object.entries(book.chapters).map(([chapterSlug, chapter], idx) => (
-                                <li key={chapterSlug}>
-                                    <Link to={`/technologies/${languageSlug}/${bookSlug}/${chapterSlug}`}>
-                                        {`Chapter ${idx + 1}: ${chapter.title}`}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <p>No chapters found.</p>
-                    )}
-                </div>
-            ))}
+            <ul>
+                {Object.entries(language.books).map(([bookSlug, book]) => (
+                    <li key={bookSlug}>
+                        <Link to={`/technologies/${languageSlug}/${bookSlug}`}>
+                            {book.title}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }

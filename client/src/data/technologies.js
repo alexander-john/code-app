@@ -10,7 +10,18 @@ export const technologies = {
             features: {
               'true-false-quiz': {
                 title: 'True/False Quiz',
-                component: 'QuizLayout'
+                component: 'QuizLayout',
+                questions: [
+                  {
+                    question: 'JavaScript is a statically typed language.',
+                    answer: false
+                  },
+                  {
+                    question: 'The typeof null is "object".',
+                    answer: true
+                  }
+                  // Add more questions as needed
+                ]
               }
               // More features...
             }
@@ -21,6 +32,7 @@ export const technologies = {
               'true-false-quiz': {
                 title: 'True/False Quiz',
                 component: 'QuizLayout'
+                // Add questions here for chapter 2 if needed
               }
             }
           }
