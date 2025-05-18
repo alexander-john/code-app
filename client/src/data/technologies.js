@@ -19,8 +19,19 @@ export const technologies = {
                   {
                     question: 'The typeof null is "object".',
                     answer: true
+                  },
+                  {
+                    question: 'Strings in JavaScript are immutable.',
+                    answer: true
+                  },
+                  {
+                    question: 'The value NaN is equal to itself (NaN === NaN).',
+                    answer: false
+                  },
+                  {
+                    question: 'typeof undefined returns "undefined".',
+                    answer: true
                   }
-                  // Add more questions as needed
                 ]
               }
               // More features...
@@ -31,8 +42,29 @@ export const technologies = {
             features: {
               'true-false-quiz': {
                 title: 'True/False Quiz',
-                component: 'QuizLayout'
-                // Add questions here for chapter 2 if needed
+                component: 'QuizLayout',
+                questions: [
+                  {
+                    question: 'A JavaScript statement always ends with a semicolon.',
+                    answer: false
+                  },
+                  {
+                    question: 'You can declare a variable using the let keyword.',
+                    answer: true
+                  },
+                  {
+                    question: 'Blocks in JavaScript are defined using curly braces {}.',
+                    answer: true
+                  },
+                  {
+                    question: 'Comments in JavaScript can only be written with //.',
+                    answer: false
+                  },
+                  {
+                    question: 'The keyword "const" creates a variable whose value can be changed later.',
+                    answer: false
+                  }
+                ]
               }
             }
           }
