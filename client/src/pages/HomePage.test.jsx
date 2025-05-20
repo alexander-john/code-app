@@ -1,22 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import HomePage from './HomePage';
-import axios from 'axios';
-import { vi } from 'vitest';
 
-vi.mock('axios');
-
-test('renders topics from API', async () => {
-  axios.get.mockResolvedValueOnce({
-    data: [{ title: 'JavaScript', slug: 'javascript' }]
-  });
-
+// Test that HomePage renders topics from the technologies data file
+test('renders topics from technologies data', () => {
+  // Render HomePage inside a MemoryRouter for routing context
   render(
     <MemoryRouter>
       <HomePage />
     </MemoryRouter>
   );
 
-  const topic = await screen.findByText('JavaScript');
-  expect(topic).toBeInTheDocument();
+  // Assert that known topics from the technologies file appear in the document
+  expect(screen.getByText('JavaScript')).toBeInTheDocument();
+  expect(screen.getByText('Python')).toBeInTheDocument();
+  expect(screen.getByText('Linux')).toBeInTheDocument();
 });
