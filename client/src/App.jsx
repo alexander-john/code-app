@@ -1,3 +1,5 @@
+// Main app router: handles navigation between languages, books, chapters, and features.
+
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import BooksPage from './pages/BooksPage';
