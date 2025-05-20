@@ -96,6 +96,32 @@ export const technologies = {
 }`
                   }
                 ]
+              },
+              'step-by-step': {
+                title: 'Step by Step',
+                component: 'StepByStepLayout',
+                steps: [
+                  {
+                    title: 'Step 1: Define the Function',
+                    content: 'Start by creating a function named `sum` that takes two parameters.'
+                  },
+                  {
+                    title: 'Step 2: Add the Return Statement',
+                    content: 'Inside the function, return the sum of the two parameters using the `+` operator.'
+                  },
+                  {
+                    title: 'Step 3: Test the Function',
+                    content: 'Call your function with arguments like `sum(2, 3)` and check if it returns `5`.'
+                  },
+                  {
+                    title: 'Step 4: Handle Edge Cases',
+                    content: 'Think about what happens if you pass non-number arguments. How could you improve your function?'
+                  },
+                  {
+                    title: 'Step 5: Final Solution',
+                    content: 'A simple solution:\n\n```js\nfunction sum(a, b) {\n  return a + b;\n}\n```'
+                  }
+                ]
               }
             }
           },
