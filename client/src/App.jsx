@@ -3,7 +3,6 @@ import HomePage from './pages/HomePage';
 import BooksPage from './pages/BooksPage';
 import ChaptersPage from './pages/ChaptersPage';
 import FeaturesPage from './pages/FeaturesPage';
-import TrueOrFalsePage from './pages/TrueOrFalsePage';
 import FeatureLayoutPage from './pages/FeatureLayoutPage';
 
 function App() {
