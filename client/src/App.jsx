@@ -4,6 +4,7 @@ import BooksPage from './pages/BooksPage';
 import ChaptersPage from './pages/ChaptersPage';
 import FeaturesPage from './pages/FeaturesPage';
 import TrueOrFalsePage from './pages/TrueOrFalsePage';
+import FeatureLayoutPage from './pages/FeatureLayoutPage';
 
 function App() {
     return (
@@ -18,10 +19,7 @@ function App() {
 
                 <Route path="/technologies/:languageSlug/:bookSlug/:chapterSlug" element={<FeaturesPage />} />
 
-                <Route path="/technologies/:languageSlug/:bookSlug/:chapterSlug/:trueOrFalseSlug" element={<TrueOrFalsePage />} />
-
-                {/* <Route path="/topics/:topicSlug/:subtopicSlug" element={<FeaturesPage />} />
-                <Route path="topics/:topicSlug/:subtopicSlug/:featureSlug" element={<FeatureLayoutPage />} /> */}
+                <Route path="/technologies/:languageSlug/:bookSlug/:chapterSlug/:featureSlug" element={<FeatureLayoutPage />} />
             </Routes>
         </Router>
     );

@@ -41,6 +41,37 @@ export const technologies = {
                     answer: true
                   }
                 ]
+              },
+              'multiple-choice-quiz': {
+                title: 'Multiple Choice Quiz',
+                component: 'MultipleChoiceLayout',
+                questions: [
+                  {
+                    question: 'Which of the following is NOT a primitive type in JavaScript?',
+                    options: ['String', 'Number', 'Boolean', 'Function'],
+                    answer: 'Function'
+                  },
+                  {
+                    question: 'What is the result of typeof NaN?',
+                    options: ['"undefined"', '"object"', '"number"', '"NaN"'],
+                    answer: '"number"'
+                  },
+                  {
+                    question: 'Which operator is used to assign a value to a variable?',
+                    options: ['=', '==', '===', ':='],
+                    answer: '='
+                  },
+                  {
+                    question: 'What will be the output of: console.log(typeof null);',
+                    options: ['"null"', '"object"', '"undefined"', '"number"'],
+                    answer: '"object"'
+                  },
+                  {
+                    question: 'Which value is NOT falsy in JavaScript?',
+                    options: ['0', '""', 'null', '"false"'],
+                    answer: '"false"'
+                  }
+                ]
               }
             }
           },
