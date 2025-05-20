@@ -72,6 +72,30 @@ export const technologies = {
                     answer: '"false"'
                   }
                 ]
+              },
+              'code-challenges': {
+                title: 'Code Challenges',
+                component: 'CodeChallengeLayout',
+                challenges: [
+                  {
+                    prompt: 'Write a function that returns the sum of two numbers.',
+                    solution: `function sum(a, b) {
+  return a + b;
+}`
+                  },
+                  {
+                    prompt: 'Write a function that checks if a value is of type string.',
+                    solution: `function isString(val) {
+  return typeof val === 'string';
+}`
+                  },
+                  {
+                    prompt: 'Write a function that returns true if a number is even.',
+                    solution: `function isEven(n) {
+  return n % 2 === 0;
+}`
+                  }
+                ]
               }
             }
           },
