@@ -13,7 +13,7 @@ jobs:
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.SERVER_IP }}
-          username: user                # <-- replace with your SSH username
+          username: root                # <-- replace with your SSH username
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ~/code-app
